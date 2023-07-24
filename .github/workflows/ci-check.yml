@@ -7,7 +7,17 @@ on:
 
 jobs:
   build-test:
+    strategy:
+      matrix:
+        ocaml-version:
+          - 4.14.1
+          - 5.0.0
+        node-version:
+          - hydrogen # v18 Active LTS
+          - latest
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -18,8 +28,17 @@ jobs:
       - name: OCaml Checks
         uses: kxcdev/ocaml-general-gha@v3
         with:
+
           skip-setup: true
           build-command: "./kune build"
           test-command: "./kune runtest"
-          ocaml-version: 5.0.0
-          node-version: latest
+
+          ocaml-version: ${{ matrix.ocaml-version }}
+          node-version: ${{ matrix.node-version }}
+          pr-report-test-result: ${{ matrix.ocaml-version == '5.0.0' && matrix.node-version == 'latest'}}
+
+  matrix-tested:
+    needs: build-test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "all set"
