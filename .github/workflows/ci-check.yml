@@ -1,0 +1,25 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+    types: [synchronize]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 2
+
+      - name: OCaml Checks
+        uses: kxcdev/ocaml-general-gha@v3
+        with:
+          skip-setup: true
+          build-command: "./kune build"
+          test-command: "./kune runtest"
+          ocaml-version: 5.0.0
+          node-version: latest
