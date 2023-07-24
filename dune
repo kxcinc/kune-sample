@@ -1,0 +1,3 @@
+(library (name greeting) (modules greeting))
+(tests (names hello) (modules hello) (libraries greeting))
+(vendored_dirs vendors)

@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+DUNE_VENDORING_DIR="$(dirname $0)/vendors/dune"
+DUNE_EXE="${DUNE_VENDORING_DIR}/_build/install/default/bin/dune"
+
+set -e
+
+if [ ! -f "$DUNE_VENDORING_DIR/dune-file" ]; then
+  echo "$DUNE_VENDORING_DIR" 'is not populated yet. You should consider run `git submodule update --init`'
+  exit 2
+fi
+
+if [ ! -f "$DUNE_EXE" ]; then
+  echo ">>> Building the vendored Dune, dubbed as Kune. This might take a while." >&2
+  time (
+    set -e
+    cd "$DUNE_VENDORING_DIR"
+    make _boot/dune.exe && _boot/dune.exe build --root "$(pwd)" @install
+    git update-index --assume-unchanged boot/libs.ml)
+  echo ">>> Vendored Dune, a.k.a. Kune, is built. The build result will be cached." >&2
+fi
+
+# if REKUNE is set, we rebuild the vendored Dune everytime
+[ ! -z "$REKUNE" ] && (cd "$DUNE_VENDORING_DIR" && _boot/dune.exe build --root "$(pwd)" @install)
+
+exec "$DUNE_EXE" $@
