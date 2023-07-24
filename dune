@@ -1,3 +1,9 @@
 (library (name greeting) (modules greeting))
 (tests (names hello) (modules hello) (libraries greeting))
 (vendored_dirs vendors)
+
+;; commenting out the following stanza
+;; and run `REKUNE= ./kune build vendors/dune/bin/main.exe`
+;;      or `dune build vendors/dune/bin/main.exe`
+;; for development of the vendored Dune.
+(subdir vendors (dirs :standard \ dune))
