@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 DUNE_VENDORING_DIR="$(dirname $0)/vendors/dune"
 DUNE_EXE="${DUNE_VENDORING_DIR}/_build/install/default/bin/dune"
 
