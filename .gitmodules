@@ -1,0 +1,4 @@
+[submodule "vendors/dune"]
+	path = vendors/dune
+	url = https://github.com/kxcinc/dune.git
+	shallow = true
