@@ -8,7 +8,7 @@ In general, if you use `./kune` in place of `dune`, the vendored
 version of Dune will be used instead of the stock version installed
 on your system / OPAM switch.
 
-# License
+## License
 This repository is under the MIT license.
 
 The MIT License (MIT)
