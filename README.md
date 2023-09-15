@@ -3,7 +3,7 @@ Sample OCaml repository that vendors Dune itself
 
 > **Warning**
 > 
-> Vendoring Dune is not recommended, and there are consequences, including non-vendorable libraries.
+> Vendoring Dune is not recommended, and there are consequences, such as resulting in non-vendorable libraries.
 > 
 > Make sure to think through before going down this route.
 
