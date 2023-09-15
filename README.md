@@ -1,5 +1,11 @@
 # kune-sample
-Sample OCaml repository that vendors dune itself
+Sample OCaml repository that vendors Dune itself
+
+> **Warning**
+> 
+> Vendoring Dune is not recommended, and there are consequences, including non-vendorable libraries.
+> 
+> Make sure to think through before going down this route.
 
 ## Get started
 To build this project, use `./kune build` instead of `dune build`.
